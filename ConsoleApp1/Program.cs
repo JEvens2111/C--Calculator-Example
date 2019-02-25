@@ -8,6 +8,8 @@ namespace ConsoleApp1
 {
     class Program
     {
+        static public int firstNum;
+        static public int secondNum;
         
         static void Intro()
         {
@@ -15,13 +17,17 @@ namespace ConsoleApp1
             Console.Write("Welcome! Please choose an operation:\n[1] Addition\n[2] Subtraction\n[3] Multiplication\n[4] Division\nChoice: ");
         }
 
-        static void Addition()
+        static void getInput()
         {
             //collect input from user. Use TryParse for protection against crashes and conversion failures. If an invalid value is provided, no value will be counted into the variable and will default to 0
             Console.Write("Please enter first number: ");
-            int.TryParse(Console.ReadLine(), out int firstNum);
+            int.TryParse(Console.ReadLine(), out firstNum);
             Console.Write("Please enter second number: ");
-            int.TryParse(Console.ReadLine(), out int secondNum);
+            int.TryParse(Console.ReadLine(), out secondNum);
+        }
+
+        static void Addition()
+        {
             //Calculate Result
             int result = firstNum + secondNum;
             Console.WriteLine("Result: " + result);
@@ -29,11 +35,6 @@ namespace ConsoleApp1
 
         static void Subtraction()
         {
-            //collect input from user. Use TryParse for protection against crashes and conversion failures. If an invalid value is provided, no value will be counted into the variable and will default to 0
-            Console.Write("Please enter first number: ");
-            int.TryParse(Console.ReadLine(), out int firstNum);
-            Console.Write("Please enter second number: ");
-            int.TryParse(Console.ReadLine(), out int secondNum);
             //Calculate Result
             int result = firstNum - secondNum;
             Console.WriteLine("Result: " + result);
@@ -41,11 +42,6 @@ namespace ConsoleApp1
 
         static void Multiplication()
         {
-            //collect input from user. Use TryParse for protection against crashes and conversion failures. If an invalid value is provided, no value will be counted into the variable and will default to 0
-            Console.Write("Please enter first number: ");
-            int.TryParse(Console.ReadLine(), out int firstNum);
-            Console.Write("Please enter second number: ");
-            int.TryParse(Console.ReadLine(), out int secondNum);
             //Calculate Result
             int result = firstNum * secondNum;
             Console.WriteLine("Result: " + result);
@@ -53,11 +49,6 @@ namespace ConsoleApp1
 
         static void Division()
         {
-            //collect input from user. Use TryParse for protection against crashes and conversion failures. If an invalid value is provided, no value will be counted into the variable and will default to 0
-            Console.Write("Please enter first number: ");
-            int.TryParse(Console.ReadLine(), out int firstNum);
-            Console.Write("Please enter second number: ");
-            int.TryParse(Console.ReadLine(), out int secondNum);
             //Calculate Result
             //protect against divide by 0 problems resulting from default 0
             if (secondNum == 0) {
@@ -76,18 +67,22 @@ namespace ConsoleApp1
             //simple switch statement to handle navigation
             switch (choice){
                 case '1': Console.WriteLine("\nChoice: Addition");
+                    getInput();
                     Addition();
                     Outro();
                     break;
                 case '2': Console.WriteLine("\nChoice: Subtraction");
+                    getInput();
                     Subtraction();
                     Outro();
                     break;
                 case '3': Console.WriteLine("\nChoice: Multiplication");
+                    getInput();
                     Multiplication();
                     Outro();
                     break;
                 case '4': Console.WriteLine("\nChoice: Division");
+                    getInput();
                     Division();
                     Outro();
                     break;
@@ -106,12 +101,10 @@ namespace ConsoleApp1
             //Unable to use OR (||) operator in if statements for char variables within C#, requiring 2 different statements
             char outroChoice = Console.ReadKey().KeyChar;
             if(outroChoice == 'Y'){
-                Intro();
                 Choice();
             }
             if(outroChoice == 'y')
             {
-                Intro();
                 Choice();
             }
         }
